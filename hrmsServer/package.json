@@ -10,11 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "cor": "0.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.12",
+    "mongoose-sequence": "^5.2.2",
     "validator": "^12.1.0"
   }
 }
