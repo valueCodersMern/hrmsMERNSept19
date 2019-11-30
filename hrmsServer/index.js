@@ -11,9 +11,10 @@ const cors = require('cors')
 app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(departmentSeed)
+
 app.use(userRouters)
 app.use(departmentRouter)
+app.use(departmentSeed)
 app.listen(port, () => {
     console.log('Server is running at port ' + port)
 })
