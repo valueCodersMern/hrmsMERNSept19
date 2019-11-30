@@ -1,5 +1,3 @@
-var mongoose = require("mongoose");
-require("../db/mongoose");
 var Department = require("../../api/department/department.model");
 
 async function func(req, res, next) {
