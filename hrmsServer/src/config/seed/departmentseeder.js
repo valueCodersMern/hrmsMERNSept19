@@ -7,25 +7,25 @@ async function func(req, res, next) {
     if (number < 1) {
         var departments = [
             new Department({
-                type: "Sales"
+                name: "Sales"
             }),
             new Department({
-                type: "Human Resource"
+                name: "Human Resource"
             }),
             new Department({
-                type: "MERN"
+                name: "MERN"
             }),
             new Department({
-                type: "MEAN"
+                name: "MEAN"
             }),
             new Department({
-                type: "JAVA"
+                name: "JAVA"
             }),
             new Department({
-                type: "BLOCKCHAINING"
+                name: "BLOCKCHAINING"
             }),
             new Department({
-                type: "PHP"
+                name: "PHP"
             })
         ];
         for (var i = 0; i < departments.length; i++) {

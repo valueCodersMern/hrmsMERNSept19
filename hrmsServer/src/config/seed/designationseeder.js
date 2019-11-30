@@ -7,13 +7,13 @@ async function func(req, res, next) {
     if (number < 1) {
         var designations = [
             new Designation({
-                type: "Admin"
+                name: "Admin"
             }),
             new Designation({
-                type: "Manager"
+                name: "Manager"
             }),
             new Designation({
-                type: "Employee/Team Lead"
+                name: "Employee/Team Lead"
             })
         ];
         for (var i = 0; i < designations.length; i++) {

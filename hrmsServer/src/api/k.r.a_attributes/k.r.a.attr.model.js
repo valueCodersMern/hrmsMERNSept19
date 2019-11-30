@@ -4,7 +4,7 @@
     var Schema = mongoose.Schema;
     var kraAttrSchema = new Schema({
         id: { type: String },
-        type: { type: String }
+        name: { type: String }
     });
 
     const kraAttributes = mongoose.model('kraAttributes', kraAttrSchema)

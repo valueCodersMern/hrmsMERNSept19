@@ -4,7 +4,7 @@
     var Schema = mongoose.Schema;
     var departmentSchema = new Schema({
         id: { type: String },
-        type: { type: String }
+        name: { type: String }
     });
 
     const Department = mongoose.model('Department', departmentSchema)
