@@ -1,13 +1,13 @@
 'use strict';
-var Designation = require('./Designation.model');
+var Designation = require('./designation.model');
 
 const showDesignation = async (req, res) => {
     try {
-        const departments = await Department.find()
-        if (!departments) {
+        const designation = await Designation.find()
+        if (!designation) {
             return res.status(404).send()
         }
-        res.send(departments)
+        res.send(designation)
     }
     catch (e) {
         console.log(e)

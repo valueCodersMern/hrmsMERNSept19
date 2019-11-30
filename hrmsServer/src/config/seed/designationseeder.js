@@ -1,35 +1,23 @@
 var mongoose = require("mongoose");
 require("../db/mongoose");
-var Department = require("../../api/department/department.model");
+var Designation = require("../../api/designation/designation.model");
 
 async function func(req, res, next) {
-    const number = await Department.countDocuments();
+    const number = await Designation.countDocuments();
     if (number < 1) {
-        var departments = [
-            new Department({
-                type: "Sales"
+        var designations = [
+            new Designation({
+                type: "Admin"
             }),
-            new Department({
-                type: "Human Resource"
+            new Designation({
+                type: "Manager"
             }),
-            new Department({
-                type: "MERN"
-            }),
-            new Department({
-                type: "MEAN"
-            }),
-            new Department({
-                type: "JAVA"
-            }),
-            new Department({
-                type: "BLOCKCHAINING"
-            }),
-            new Department({
-                type: "PHP"
+            new Designation({
+                type: "Employee/Team Lead"
             })
         ];
-        for (var i = 0; i < departments.length; i++) {
-            departments[i].save();
+        for (var i = 0; i < designations.length; i++) {
+            designations[i].save();
         }
     }
 }

@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-const { showDepartments } = require('./department.controller')
+const { showDesignation } = require('./designation.controller')
 
-router.get('/showDepartments', showDepartments)
+router.get('/showDesignation', showDesignation)
 
 
 
