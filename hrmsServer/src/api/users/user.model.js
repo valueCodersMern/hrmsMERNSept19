@@ -10,6 +10,10 @@ const userSchema = new mongoose.Schema({
         AutoIncrement: true,
         primaryKey: true
     },
+    prefix: {
+        type: String,
+        default: "v"
+    },
     name: {
         type: String,
         trim: true,
@@ -35,32 +39,26 @@ const userSchema = new mongoose.Schema({
             }
         }
     },
-    designation: {
-        type: String,
+    designation_id: {
+        type: mongoose.Schema.Types.ObjectId,
         trim: true,
-        required: true
+        required: true,
+        ref: "designation"
     },
-    department: {
-        type: String,
+    department_id: {
+        type: mongoose.Schema.Types.ObjectId,
         trim: true,
-        required: true
+        ref: "department"
     },
     reportingManager: {
-        managerId: {
-            type: Number,
-            required: true,
-            trim: true
-        },
-        managerName: {
-            type: String,
-            trim: true,
-            required: true
-        }
+      
     },
+
     dateOfJoining: {
         type: Date,
         default: new Date()
     },
+
     jobStatus: {
         type: String,
         default: "working"
@@ -69,9 +67,23 @@ const userSchema = new mongoose.Schema({
     token: {
         type: String
     }
-})
+});
+
 
 userSchema.plugin(AutoIncrement, { inc_field: "_id", prefix: 'v' });
+
+userSchema.virtual('designation_details', {
+    ref: 'designation',
+    localField: 'designation_id',
+    foreignField: '_id'
+})
+
+userSchema.virtual('department_details', {
+    ref: 'department',
+    localField: 'department_id',
+    foreignField: '_id'
+})
+
 
 userSchema.methods.generateAuthToken = async function () {
     const user = this;
@@ -82,7 +94,6 @@ userSchema.methods.generateAuthToken = async function () {
 };
 
 userSchema.statics.findByCredentials = async (email, password) => {
-    console.log(email,password)
     const user = await User.findOne({ email });
     console.log(user)
     if (!user) {
@@ -99,7 +110,6 @@ userSchema.statics.findByCredentials = async (email, password) => {
 userSchema.pre("save", async function (next) {
     const user = this;
     user.password = (await user.name) + user.dateOfJoining.getFullYear();
-   // console.log(user.password)
     if (user.isModified("password")) {
         user.password = await bcrypt.hash(user.password, 8);
     }
@@ -107,22 +117,6 @@ userSchema.pre("save", async function (next) {
 });
 
 const User = mongoose.model('User', userSchema);
-async function fun() {
-    const number = await User.countDocuments();
-    if (number < 1) {
-        const obj = {
-            name: "mern",
-            email: "rahul@gmail.com",
-            designation: "software",
-            department: "mern",
-            reportingManager: { managerId: 1, managerName: "ajit" }
-        };
-        const e = new User(obj);
-        e.save();
-    }
-}
-fun();
-
 module.exports = User;
 
 
